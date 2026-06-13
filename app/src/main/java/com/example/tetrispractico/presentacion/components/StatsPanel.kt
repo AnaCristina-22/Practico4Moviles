@@ -1,37 +1,33 @@
 package com.example.tetrispractico.presentacion.components
 
-
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun StatsPanel() {
+fun StatsPanel(
+    score: Int,
+    lines: Int
+) {
 
-    Column {
+    Card {
 
-        Text("Puntaje")
-        Text("0")
+        Column(
+            modifier = Modifier.padding(12.dp)
+        ) {
 
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
+            Text("PUNTAJE")
+            Text("$score")
 
-        Text("Líneas")
-        Text("0")
+            Spacer(
+                modifier = Modifier.height(16.dp)
+            )
 
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
-
-        Text("🟢 Conectado")
-
-        Spacer(
-            modifier = Modifier.height(16.dp)
-        )
-
-        Text("👤 Rival")
+            Text("LÍNEAS")
+            Text("$lines")
+        }
     }
 }
