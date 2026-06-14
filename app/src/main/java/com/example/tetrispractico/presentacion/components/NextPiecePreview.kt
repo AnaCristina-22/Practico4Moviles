@@ -7,49 +7,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.tetrispractico.presentacion.models.GameBoardState
 
 @Composable
-fun NextPiecePreview() {
-
+fun NextPiecePreview(boardState: GameBoardState) {
     Column {
-
         Text("SIGUIENTE")
+        Spacer(modifier = Modifier.height(8.dp))
 
-        Spacer(
-            modifier = Modifier.height(8.dp)
-        )
+        Canvas(modifier = Modifier.size(80.dp)) {
+            val blockSize = size.width / 4
 
-        Canvas(
-            modifier = Modifier.size(80.dp)
-        ) {
-
-            val block = size.width / 4
-
-            drawRect(
-                Color.Yellow,
-                Offset(block, block),
-                Size(block, block)
-            )
-
-            drawRect(
-                Color.Yellow,
-                Offset(block * 2, block),
-                Size(block, block)
-            )
-
-            drawRect(
-                Color.Yellow,
-                Offset(block, block * 2),
-                Size(block, block)
-            )
-
-            drawRect(
-                Color.Yellow,
-                Offset(block * 2, block * 2),
-                Size(block, block)
-            )
+            // Dibujamos bloque a bloque según la matriz de la siguiente pieza
+            boardState.nextPiecePreview.forEach { block ->
+                drawRect(
+                    color = block.color,
+                    topLeft = Offset(block.x * blockSize, block.y * blockSize),
+                    size = Size(blockSize - 2, blockSize - 2)
+                )
+            }
         }
     }
 }
